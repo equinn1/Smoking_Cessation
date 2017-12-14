@@ -1,0 +1,348 @@
+\documentclass[12pt]{article}
+\begin{document}
+%
+\title{Smoking Cessation Study}
+\maketitle
+\section*{Overview of Study}
+An EMA study of smokers who had experienced a cardiac event serious enough to be evaluated for hospital admission and were subsequently enrolled in a smoking cessation program tracked subjects until they reported their first cigarette since the cardiac event. 
+\par\vspace{0.3 cm}
+At intake, subjects were asked to complete a number of questionnaires containing Likert scale items to evaluate:
+\par\vspace{0.3 cm}
+\begin{itemize}
+\item The subject's perceived illness severity
+\item The strength of the subject's intention to quit smoking
+\item The subject's causal attribution for their cardiac event
+\item The subject's level of event related fear
+\end{itemize}
+\par\vspace{0.3 cm}
+Additional information from the subject's chart review form was used to construct actual severity and TIMI scores. 
+\par\vspace{0.3 cm}
+The actual severity score was computed as follows:
+\begin{itemize}
+\item Patients discharged from ED or the observation unit were assigned an actual severity score of 0
+\item Patients who were admitted to an inpatient floor but received no intervention were assigned a score of 1
+\item Patients who were admitted to an inpatient floor and received an intervention were assigned a score of 2
+\end{itemize}
+\par\vspace{0.3 cm}
+The TIMI score was computed as the sum of the following binary items from the chart review form:
+\begin{itemize}
+\item Age is 65 or older
+\item At least three risk factors for CAD
+\item Known coronary artery disease
+\item Severe angina
+\item Use of aspirin in last 7 days
+\item ST deviation of 0.5 mm or more
+\item Elevated serum cardiac markers
+\end{itemize}
+\par\vspace{0.3 cm}
+The primary objective of the study was determining which factors predicted success in quitting smoking, as measured by the length of time from intake to the subject's first reported cigarette.
+\section*{Overview of Data Analysis(so far)}
+Survival analysis was used to model the time from intake and enrollment in the smoking cessation program to the time the first cigarette was reported.   Subjects who had not resumed smoking were censored at 87 days or at their time of departure from the study, whichever came first.
+\par\vspace{0.3 cm}
+A case-by-case manual review of the information on 436 patients in the database was used to determine which of them enrolled in the smoking cessation program, and to establish censoring times for subjects who were enrolled but never reported a first cigarette.  The subject's suspension, withdrawal, and termination dates (if present) were used to determine an appropriate censoring time for subjects who never reported a first cigarette.  Subjects who were enrolled, remained in the study, and did not report a first cigarette in the first 87 days after intake were censored at 87 days.  Subjects who were enrolled but left the study in the first two days were excluded.  Only subjects with completed the questionnaires were included in the survival analysis.  This resulted in between 389 and 394 subjects with between 309 and 314 events being included in the individual survival analyses.  
+\par\vspace{0.3 cm}
+To reduce dimensionality, principal component scores were computed from the Likert scale items for characteristics that were assessed more than once (perceived illness severity, intention to quit, and event related fear) or had more than three items (causal attribution).  
+\par\vspace{0.3 cm}
+As it turned out, for each of the characteristics assessed multiple times, the first principal component can be interpreted as a weighted average of the Likert scale responses, and the second principal component can be interpreted as a difference between responses on the first and last assessments.  
+\par\vspace{0.3 cm}
+The second principal component was a significant predictor of time to first cigarette for both perceived illness severity and quit intentions.  For perceived illness severity, it was the only significant predictor among the first four principal components.  
+\par\vspace{0.3 cm}
+This suggests that changes in the characteristics measured by these questionnaries from the first to the last assessment are important predictors of success in quitting smoking.
+\par\vspace{0.3 cm}
+The actual severity and TIMI scores were both significant predictors of time to first cigarette, with higher scores indicating longer times.
+\section*{Perceived Illness Severity Analysis}
+\par\vspace{0.3 cm}
+The investigators postulated that the change in a subject's perceived illness severity might be a better predictor of success in quitting than a single evaluation done at intake, so for the four Likert scale items related to perceived illness severity were administered three times between intake and discharge.
+\par\vspace{0.3 cm}
+Subjects who reported a first cigarette prior to the $87^{th}$ day beyond intake or the time they left the study, whichever occurred first, were counted as having experienced an event at the time the first cigarette was reported.  
+\par\vspace{0.3 cm}
+Subjects who never reported a first cigarette were considered censored at the earliest of their time of withdrawal from the study, their time of termination from the study, or the 87th day beyond intake.
+\par\vspace{0.3 cm}
+Time to event was modeled using a Cox proportional hazards regression model on the first four principal components of the twelve perceived illness severity scores.   
+\subsection*{Principal Component Analysis}
+To reduce the dimensionality, a principal component analysis was performed on the 12 Likert scale measures for perceived illness severity.
+\par\vspace{0.3 cm}
+\subsubsection*{Proportion of Variance Accounted For}
+The proportion of variance accounted for by the first four principal components was:
+\par\vspace{0.3 cm}
+\begin{tabular}{cc} Principal Component: & Percent of Variance:\\
+\hline
+First  & 37.95\\
+Second & 16.56\\
+Third  &  9.68\\
+Fourth &  8.85
+\end{tabular}
+\par\vspace{0.3 cm}
+\subsubsection*{Loadings}
+The principal component loadings for perceived illness severity were:
+\par\vspace{0.3 cm}
+\begin{tabular}{clccc}
+PC & Item &Administration \\
+   &      & First & Second & Third\\
+\hline
+1 & \mbox{Something is seriously wrong with me} & -0.315 & -0.232 & -0.320\\
+1 & \mbox{I am pretty sick} & -0.302 & -0.270 & -0.282\\
+1 & \mbox{My illness is something minor} & 0.287 & 0.211 & 0.185\\
+1 & \mbox{I have a life-threatening illness} & -0.383 & -0.318 & -0.303\\
+\hline
+2 & \mbox{Something is seriously wrong with me} & -0.388 & 0.0 &0.352  \\
+2 & \mbox{I am pretty sick} & -0.366 & 0.0 & 0.384\\
+2 & \mbox{My illness is something minor} & 0.326 & 0.0 & -0.289\\
+2 & \mbox{I have a life-threatening illness} & -0.269 & 0.0 & 0.412\\
+\hline
+3 & \mbox{Something is seriously wrong with me} & 0.119 & 0.0 & 0.112\\
+3 & \mbox{I am pretty sick} & 0.228 & 0.221 & 0.294\\
+3 & \mbox{My illness is something minor} & -0.140 & -0.281 & -0.266\\
+3 & \mbox{I have a life-threatening illness} & -0.450 & -0.541 & -0.343\\
+\hline
+4 & \mbox{Something is seriously wrong with me} & 0.255 & -0.324 & 0.298  \\
+4 & \mbox{I am pretty sick} & 0.238 & -0.334 & 0.302\\
+4 & \mbox{My illness is something minor} & 0.0 & 0.532 & 0.147\\
+4 & \mbox{I have a life-threatening illness} & 0.117 & -0.362  & 0.177\\
+\end{tabular}
+\par\vspace{0.3 cm}
+\subsubsection*{Cox regression on first four principal components}
+
+  n= 390, number of events= 310
+\par\vspace{0.3 cm}
+\begin{tabular}{cccccc}
+    &     coef & exp(coef) &  se(coef) & z   & Pr$(>|z|)$\\
+\hline   
+pc1 & 0.030532 & 1.031002  &0.019898 & 1.534 & 0.12493\\   
+pc2 &-0.093007 & 0.911187  &0.030408 &-3.059 & 0.00222 **\\ 
+pc3 &-0.003243 & 0.996762  &0.039265 &-0.083 & 0.93417\\   
+pc4 & 0.070561 & 1.073110  &0.041521 & 1.699 & 0.08924  
+\end{tabular}
+\par\vspace{0.3 cm}
+The only significant predictor of time to first cigarette is the second principal component.
+\par\vspace{0.3 cm}
+The loadings of the second principal component indicate that it can be interpreted as the difference between the first administration of the questionnaire and the last, with the second administration having zero weight.
+\par\vspace{0.3 cm}
+The coefficient in the proportional hazards regression has a negative sign, meaning that a higher second principal component predicts a longer time to first cigarette (HR=-0.093, p=.0022).  For each unit increase in the second principal component score, the hazard ratio declines by a factor of 0.91.
+\par\vspace{0.3 cm}
+This can be interpreted as an indication that subjects whose perceived illness severity increases from the first questionnaire to the third are less likely to report a first cigarette at any point in time.
+
+\section*{Quit Intentions Analysis}
+\par\vspace{0.3 cm}
+The strength of the subject's quit intentions.  
+\par\vspace{0.3 cm}
+\subsection*{Principal Component Analysis}
+To reduce the dimensionality, a principal component analysis was performed on the 10 Likert scale measures for perceived illness severity.
+\par\vspace{0.3 cm}
+\subsubsection*{Proportion of Variance Accounted For}
+The proportion of variance accounted for by the first four principal components was:
+\par\vspace{0.3 cm}
+\begin{tabular}{cc} Principal Component: & Percent of Variance:\\
+\hline
+First  & 47.84\\
+Second & 15.74\\
+Third  &  8.90\\
+Fourth &  6.05
+\end{tabular}
+\par\vspace{0.3 cm}
+\subsubsection*{Loadings}
+The principal component loadings for perceived illness severity were:
+\par\vspace{0.3 cm}\hspace{-2.0 cm}
+\begin{tabular}{clcc}
+PC & Item &Administration \\
+   &      & First & Second\\
+\hline
+1 & \mbox{I was highly motivated to quit smoking.} & -0.231 & -0.305\\
+1 & \mbox{I intended to quit smoking within the next 30 days.} & -0.359 & -0.317\\
+1 & \mbox{I was very excited about quitting smoking.} & -0.329 & -0.346\\
+1 & \mbox{I had decided to quit smoking.} & -0.350 & -0.310\\
+1 & \mbox{I intended to keep smoking. Reverse code} & 0.302 & 0.295\\
+\hline
+2 & \mbox{I was highly motivated to quit smoking.} & -0.431 & 0.230\\
+2 & \mbox{I intended to quit smoking within the next 30 days.} & -0.276 & 0.268\\
+2 & \mbox{I was very excited about quitting smoking.} & -0.305 & 0.197\\
+2 & \mbox{I had decided to quit smoking.} & -0.339 & 0.455\\
+2 & \mbox{I intended to keep smoking. Reverse code} & 0.176 & -0.359\\
+\hline
+3 & \mbox{I was highly motivated to quit smoking.} & -0.190 & 0.0\\
+3 & \mbox{I intended to quit smoking within the next 30 days.} & 0.160 & 0.0\\
+3 & \mbox{I was very excited about quitting smoking.} & -0.485 & -0.470\\
+3 & \mbox{I had decided to quit smoking.} & 0.231 & 0.0\\
+3 & \mbox{I intended to keep smoking. Reverse code} & -0.544 & -0.351\\
+\hline
+4 & \mbox{I was highly motivated to quit smoking.} & 0.304 & 0.243\\
+4 & \mbox{I intended to quit smoking within the next 30 days.} & 0.391 & 0.243\\
+4 & \mbox{I was very excited about quitting smoking.} & -0.368 & -0.363\\
+4 & \mbox{I had decided to quit smoking.} & 0.117 & 0.189\\
+4 & \mbox{I intended to keep smoking. Reverse code} & 0.536 & 0.177\\
+\end{tabular}
+\par\vspace{0.3 cm}
+\subsubsection*{Cox regression on first four principal components}
+
+  n= 390, number of events= 310
+\par\vspace{0.3 cm}
+\begin{tabular}{cccccc}
+    &     coef & exp(coef) &  se(coef) & z   & Pr$(>|z|)$\\
+\hline  
+pc1&  0.08605&   1.08986&  0.01825&  4.716& 2.41e-06 ***\\
+pc2& -0.24131&   0.78560&  0.03607& -6.690& 2.23e-11 ***\\
+pc3&  0.03052&   1.03099&  0.04618&  0.661&    0.509\\
+pc4&  0.04787&   1.04903&  0.05161&  0.928&    0.354 
+\end{tabular}
+\par\vspace{0.3 cm}
+Both the first and second principal components were significant predictors of time to first cigarette.
+\par\vspace{0.3 cm}
+The loadings of the first principal component are essentially a weighted average with negative weights for the Likert scales and positive for the reverse Likert scale.  With a positive regression coefficient, stronger intention to quit with a negative sign predicts a longer time to first cigarette (HR=1.09, p$<$.001)
+\par\vspace{0.3 cm}
+The loadings of the second principal component indicate that it can be interpreted as the difference between the first administration of the questionnaire and the second.  An unit increase in the second principal component score reduces the hazard ratio by a factor of 0.79.  This means that higher scores on the second principal component predict longer times to the first cigarette.  Higher intention to quit on the second administration of the questionnaire increases the second principal component score, which reduces the hazard ratio and increases the time to first cigarette (HR=0.79, p$<$0.001)
+
+
+\section*{Event Related Fear Analysis}
+\par\vspace{0.3 cm}
+The strength of the subject's event related fear.  
+\par\vspace{0.3 cm}
+\subsection*{Principal Component Analysis}
+A principal component analysis was performed on the 3 Likert scale measures for perceived illness severity.
+\par\vspace{0.3 cm}
+\subsubsection*{Proportion of Variance Accounted For}
+The proportion of variance accounted for by the first four principal components was:
+\par\vspace{0.3 cm}
+\begin{tabular}{cc} Principal Component: & Percent of Variance:\\
+\hline
+First  & 65.77\\
+Second & 19.68\\
+Third  & 14.57
+\end{tabular}
+\par\vspace{0.3 cm}
+\subsubsection*{Loadings}
+The principal component loadings for perceived illness severity were:
+\par\vspace{0.3 cm}\hspace{-2.0 cm}
+\begin{tabular}{clccc}
+PC & Item &Administration \\
+   &      & First & Second & third\\
+\hline
+1 & \mbox{Afraid} & -0.605 & -0.639 & -0.475\\
+\hline
+2 & \mbox{Afraid} & 0.597 & 0.0 & -0.801\\
+\hline
+3 & \mbox{Afraid} & 0.527 & -0.769 & 0.363\\
+\end{tabular}
+\par\vspace{0.3 cm}
+\subsubsection*{Cox regression on first four principal components}
+
+  n= 391, number of events= 311
+\par\vspace{0.3 cm}
+\begin{tabular}{cccccc}
+    &     coef & exp(coef) &  se(coef) & z   & Pr$(>|z|)$\\
+\hline  
+pc1& -0.005668&  0.994348&  0.026224& -0.216&   0.8289\\
+pc2&  0.078008&  1.081131&  0.048030&  1.624&   0.1043\\  
+pc3&  0.101521&  1.106853&  0.055911&  1.816&   0.0694
+\end{tabular}
+\par\vspace{0.3 cm}
+None of the principal components are significant predictors of time to first cigarette.
+\par\vspace{0.3 cm}
+
+\section*{Causal Attribution Analysis}
+\par\vspace{0.3 cm}
+The strength of the subject's attribution of the cause of their illness.  
+\par\vspace{0.3 cm}
+\subsection*{Principal Component Analysis}
+A principal component analysis was performed on the 5 Likert scale measures for causal attribution.
+\par\vspace{0.3 cm}
+\subsubsection*{Proportion of Variance Accounted For}
+The proportion of variance accounted for by the first three principal components was:
+\par\vspace{0.3 cm}
+\begin{tabular}{cc} Principal Component: & Percent of Variance:\\
+\hline
+First  & 66.13\\
+Second & 12.08\\
+Third  &  9.30
+\end{tabular}
+\par\vspace{0.3 cm}
+\subsubsection*{Loadings}
+The principal component loadings for causal attribution were:
+\par\vspace{0.3 cm}\hspace{-2.0 cm}
+\begin{tabular}{clccc}
+PC & Item & Loadings \\
+\hline
+1 & \mbox{smoking cigarettes or cigars} & -0.457\\
+1 & \mbox{My current illness is due to a health problem caused by smoking} & -0.560 \\
+1 & \mbox{Smoking is one of many causes of my health condition} & -0.487\\
+1 & \mbox{Quitting smoking could improve my health.} & -0.167\\
+1 & \mbox{How do you think smoking is related to your current health problem? (circle one)} & -0.461\\
+\hline
+2 & \mbox{smoking cigarettes or cigars} & 0.0\\
+2 & \mbox{My current illness is due to a health problem caused by smoking} & 0.105\\
+2 & \mbox{Smoking is one of many causes of my health condition} & 0.0\\
+2 & \mbox{Quitting smoking could improve my health.} & -0.977\\
+2 & \mbox{How do you think smoking is related to your current health problem? (circle one)} & 0.163\\
+\hline
+3 & \mbox{smoking cigarettes or cigars} & 0.858\\
+3 & \mbox{My current illness is due to a health problem caused by smoking} & -0.476\\
+3 & \mbox{Smoking is one of many causes of my health condition} & -0.159\\
+3 & \mbox{Quitting smoking could improve my health.} & 0.0\\
+3 & \mbox{How do you think smoking is related to your current health problem? (circle one)} & -0.108\\
+\end{tabular}
+\par\vspace{0.3 cm}
+\subsubsection*{Cox regression on first three principal components}
+
+  n= 391, number of events= 311
+\par\vspace{0.3 cm}
+\begin{tabular}{cccccc}
+    &     coef & exp(coef) &  se(coef) & z   & Pr$(>|z|)$\\
+\hline  
+pc1& 0.07452&   1.07736&  0.02470& 3.016&  0.00256 **\\
+pc2& 0.03445&   1.03505&  0.05752& 0.599&  0.54924\\   
+pc3& 0.03437&   1.03497&  0.06933& 0.496&  0.62011   
+\end{tabular}
+\par\vspace{0.3 cm}
+Only the principal component is a significant predictor of time to first cigarette.
+\par\vspace{0.3 cm}
+
+\section*{Actual Severity Analysis}
+\par\vspace{0.3 cm}
+The actual severity score was computed as follows:
+\begin{itemize}
+\item Patients discharged from ED or the observation unit were assigned an actual severity score of 0
+\item Patients who were admitted to an inpatient floor but received no intervention were assigned a score of 1
+\item Patients who were admitted to an inpatient floor and received an intervention were assigned a score of 2
+\end{itemize}
+\par\vspace{0.3 cm}
+\subsubsection*{Cox regression on actual severity}
+
+  n= 394, number of events= 314
+\par\vspace{0.3 cm}
+\begin{tabular}{cccccc}
+    &     coef & exp(coef) &  se(coef) & z   & Pr$(>|z|)$\\
+\hline  
+actual severity& -0.7582&    0.4685&   0.1067& -7.105&  1.2e-12 ***
+\end{tabular}
+\par\vspace{0.3 cm}
+Actual severity is a significant predictor of time to first cigarette, with higher severity predicting longer times.
+\par\vspace{0.3 cm}
+
+
+\section*{TIMI Analysis}
+
+\par\vspace{0.3 cm}
+The TIMI score was computed as the sum of the following binary items from the chart review form:
+\begin{itemize}
+\item Age is 65 or older
+\item At least three risk factors for CAD
+\item Known coronary artery disease
+\item Severe angina
+\item Use of aspirin in last 7 days
+\item ST deviation of 0.5 mm or more
+\item Elevated serum cardiac markers
+\end{itemize}
+\par\vspace{0.3 cm}
+\subsubsection*{Cox regression on TIMI}
+
+  n= 394, number of events= 314
+\par\vspace{0.3 cm}
+\begin{tabular}{cccccc}
+    &     coef & exp(coef) &  se(coef) & z   & Pr$(>|z|)$\\
+\hline  
+TIMI& -0.1180&    0.8887&   0.0454& -2.599&  0.00936 **
+\end{tabular}
+\par\vspace{0.3 cm}
+The TIMI score is a significant predictor of time to first cigarette, with higher TIMI predicting longer times to first cigarette.
+\par\vspace{0.3 cm}
+\end{document}
+
